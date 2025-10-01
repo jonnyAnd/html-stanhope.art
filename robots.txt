@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://stanhope.art/sitemap.xml

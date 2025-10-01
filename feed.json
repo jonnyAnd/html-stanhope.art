@@ -1,0 +1,13 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "stanhope.art",
+    "description": "",
+    "home_page_url": "https://stanhope.art",
+    "feed_url": "https://stanhope.art/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "stanhope.art"
+    },
+    "items": [
+    ]
+}
