@@ -1,12 +1,451 @@
-<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>index - stanhope.art</title><meta name="description" content="test content"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://stanhope.art/"><link rel="alternate" type="application/atom+xml" href="https://stanhope.art/feed.xml" title="stanhope.art - RSS"><link rel="alternate" type="application/json" href="https://stanhope.art/feed.json" title="stanhope.art - JSON"><meta property="og:title" content="index"><meta property="og:site_name" content="stanhope.art"><meta property="og:description" content="test content"><meta property="og:url" content="https://stanhope.art/index.html"><meta property="og:type" content="article"><link rel="stylesheet" href="https://stanhope.art/assets/css/style.css?v=11bee19e86e8eda2cf9a60efd975666d"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://stanhope.art/index.html"},"headline":"index","datePublished":"2025-10-01T22:37+01:00","dateModified":"2025-10-02T00:05+01:00","description":"test content","author":{"@type":"Person","name":"stanhope.art","url":"https://stanhope.art/authors/stanhopeart/"},"publisher":{"@type":"Organization","name":"stanhope.art"}}</script><noscript><style>img[loading] {
-                    opacity: 1;
-                }</style></noscript></head><body class="page-template"><header class="top js-header"><a class="logo" href="https://stanhope.art/">stanhope.art</a><nav class="navbar js-navbar"><button class="navbar__toggle js-toggle" aria-label="Menu" aria-haspopup="true" aria-expanded="false"><span class="navbar__toggle-box"><span class="navbar__toggle-inner">Menu</span></span></button><ul class="navbar__menu"><li><a href="https://stanhope.art/another.html" title="another" target="_self">art</a></li></ul></nav></header><main class="page"><article class="content"><div class="hero hero--noimage"><header class="hero__content"><div class="wrapper"><h1>index</h1></div></header></div><div class="entry-wrapper content__entry"><figure class="post__image"><img loading="lazy" src="https://stanhope.art/media/posts/1/200w.gif" alt="test" width="200" height="200"></figure>test content<p></p></div></article></main><footer class="footer"><div class="wrapper"><div class="footer__copyright">Powered by Publii</div><button id="backToTop" class="footer__bttop" aria-label="Back to top" title="Back to top"><svg width="20" height="20"><use xlink:href="https://stanhope.art/assets/svg/svg-map.svg#toparrow"/></svg></button></div></footer><script defer="defer" src="https://stanhope.art/assets/js/scripts.min.js?v=ffcbea6c02c8178d10092962b235a5b0"></script><script>window.publiiThemeMenuConfig={mobileMenuMode:'sidebar',animationSpeed:300,submenuWidth: 'auto',doubleClickTime:500,mobileMenuExpandableSubmenus:true,relatedContainerForOverlayMenuSelector:'.top'};</script><script>var images = document.querySelectorAll('img[loading]');
-        for (var i = 0; i < images.length; i++) {
-            if (images[i].complete) {
-                images[i].classList.add('is-loaded');
-            } else {
-                images[i].addEventListener('load', function () {
-                    this.classList.add('is-loaded');
-                }, false);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>stanhope.art</title>
+  <!-- Google Fonts: Use a classic serif font, e.g. Playfair Display -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      width: 100vw;
+      box-sizing: border-box;
+      min-height: 100vh;
+      min-width: 100vw;
+      position: relative;
+    }
+    #bgEffect {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+    #bgImg {
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      background: url('./bg.png') no-repeat center center;
+      background-size: cover;
+      filter: blur(8px) brightness(0.4);
+      pointer-events: none;
+    }
+    /* H1 overlay centered and darker */
+    #siteTitle {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      pointer-events: none;
+      user-select: none;
+      background: rgba(0,0,0,0.65); /* darker overlay */
+    }
+    #siteTitle h1 {
+      margin: 0;
+      padding: 0;
+      font-size: 5vw;
+      color: #636262;
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-shadow: 0 0 16px #000, 0 2px 32px #0ff, 0 -2px 32px rgb(87, 52, 87);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+    #bgEffect.vcr-glitch.flicker {
+      animation: vcr-flicker var(--flicker-speed, 0.15s) infinite;
+    }
+    @keyframes vcr-flicker {
+      0%   { filter: blur(8px) brightness(var(--flicker-min, 0.35)); }
+      30%  { filter: blur(8px) brightness(var(--flicker-max, 0.45)); }
+      60%  { filter: blur(8px) brightness(var(--flicker-mid, 0.40)); }
+      100% { filter: blur(8px) brightness(var(--flicker-min, 0.37)); }
+    }
+    #bgEffect.vcr-glitch::before,
+    #bgEffect.vcr-glitch::after {
+      content: "";
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: url('./bg.png') no-repeat center center;
+      background-size: cover;
+      opacity: var(--glitch-opacity, 0.3);
+      z-index: 2;
+      pointer-events: none;
+      mix-blend-mode: lighten;
+      filter: blur(8px) brightness(0.6);
+    }
+    #bgEffect.vcr-glitch::before {
+      filter: blur(8px) brightness(0.6) drop-shadow(calc(-1 * var(--glitch-strength, 3px)) 0 0 #f00);
+      opacity: var(--glitch-opacity, 0.4);
+      animation: vcr-split-red var(--glitch-speed, 0.18s) infinite linear alternate;
+    }
+    #bgEffect.vcr-glitch::after {
+      filter: blur(8px) brightness(0.6) drop-shadow(var(--glitch-strength, 3px) 0 0 #0ff);
+      opacity: var(--glitch-opacity, 0.4);
+      animation: vcr-split-cyan var(--glitch-speed, 0.18s) infinite linear alternate;
+    }
+    #bgEffect.vcr-glitch .scanlines {
+      pointer-events: none;
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      z-index: 3;
+      opacity: var(--scanline-opacity, 0.45);
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.16) 0px,
+        rgba(255,255,255,0.16) 1px,
+        rgba(0,0,0,0.33) 1px,
+        rgba(0,0,0,0.33) 3px
+      );
+      animation: scanline-move var(--scanline-speed, 0.4s) linear infinite;
+    }
+    #bgEffect.vcr-glitch .scanlines2 {
+      pointer-events: none;
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      z-index: 3;
+      opacity: 0.2;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.10) 0px,
+        rgba(255,255,255,0.10) 0.5px,
+        rgba(0,0,0,0.3) 0.5px,
+        rgba(0,0,0,0.3) 2px
+      );
+      animation: scanline-move2 0.7s linear infinite;
+    }
+    #bgEffect.vcr-glitch .noise {
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 4;
+      opacity: var(--noise-opacity, 0.13);
+      mix-blend-mode: screen;
+    }
+    #bgEffect.vcr-glitch .glitchpixels {
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 5;
+      opacity: var(--glitch-pixel-opacity, 0.33);
+      mix-blend-mode: lighten;
+      filter: none;
+    }
+    #bgEffect.vcr-glitch .distortionline {
+      position: absolute;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 6;
+      opacity: var(--distortion-line-opacity, 0.7);
+      mix-blend-mode: lighten;
+    }
+    @keyframes vcr-split-red {
+      0% { left: 0px; top: 0px; }
+      25% { left: calc(-1 * var(--glitch-strength, 3px)); top: var(--glitch-strength, 2px); }
+      50% { left: calc(-2 * var(--glitch-strength, 3px)); top: calc(-1 * var(--glitch-strength, 2px)); }
+      75% { left: calc(-0.5 * var(--glitch-strength, 3px)); top: calc(1.5 * var(--glitch-strength, 2px)); }
+      100% { left: 0px; top: 0px; }
+    }
+    @keyframes vcr-split-cyan {
+      0% { left: 0px; top: 0px; }
+      25% { left: var(--glitch-strength, 3px); top: calc(-1 * var(--glitch-strength, 2px)); }
+      50% { left: calc(2 * var(--glitch-strength, 3px)); top: var(--glitch-strength, 2px); }
+      75% { left: calc(0.5 * var(--glitch-strength, 3px)); top: calc(-1.5 * var(--glitch-strength, 2px)); }
+      100% { left: 0px; top: 0px; }
+    }
+    @keyframes scanline-move {
+      0% { background-position-y: 0px; }
+      100% { background-position-y: 4px; }
+    }
+    @keyframes scanline-move2 {
+      0% { background-position-y: 0px; }
+      100% { background-position-y: 2px; }
+    }
+  </style>
+  <script>
+    const ENABLE_EFFECTS = {
+      enableFlicker: true,
+      enableScanlines: true,
+      enableNoise: true,
+      enableGlitchPixels: true,
+      enableDistortionLine: true
+    };
+
+    const VCR_EFFECT = {
+      glitchStrength: 6,
+      glitchOpacity: 0.45,
+      glitchSpeed: 0.11,
+
+      flickerMin: 0.31,
+      flickerMax: 0.49,
+      flickerMid: 0.38,
+      flickerSpeedMin: 0.08,
+      flickerSpeedMax: 0.25,
+
+      scanlineOpacity: 0.45,
+      scanlineSpeed: 0.4,
+
+      noiseOpacity: 0.19,
+      noiseDensity: 0.16,
+
+      glitchPixelOpacity: 0.33,
+      glitchPixelMinAmount: 25,
+      glitchPixelMaxAmount: 70,
+      glitchPixelMinSize: 7,
+      glitchPixelMaxSize: 18,
+      glitchPixelColors: [
+        'rgba(255,0,0,1)',
+        'rgba(0,255,255,1)',
+        'rgba(255,255,255,1)',
+        'rgba(0,255,0,1)',
+        'rgba(255,255,0,1)',
+        'rgba(0,0,255,1)',
+        'rgba(255,0,255,1)',
+        'rgba(0,0,0,1)'
+      ],
+      glitchPixelIntervalMin: 10,
+      glitchPixelIntervalMax: 80,
+
+      distortionLineOpacity: 0.7,
+      distortionLineColor: 'rgba(255,255,255,0.8)',
+      distortionLineHeight: 12,
+      distortionLineLength: 160,
+      distortionLineSpeed: 2.4,
+      distortionLineInterval: 24
+    };
+
+    function randomFloat(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function onPageLoaded() {
+      startGlitch();
+    }
+
+    function startGlitch() {
+      const bg = document.getElementById('bgEffect');
+      bg.classList.add('vcr-glitch');
+      bg.style.setProperty('--glitch-strength', VCR_EFFECT.glitchStrength + 'px');
+      bg.style.setProperty('--glitch-opacity', VCR_EFFECT.glitchOpacity);
+      bg.style.setProperty('--glitch-speed', VCR_EFFECT.glitchSpeed + 's');
+      bg.style.setProperty('--scanline-opacity', VCR_EFFECT.scanlineOpacity);
+      bg.style.setProperty('--scanline-speed', VCR_EFFECT.scanlineSpeed + 's');
+      bg.style.setProperty('--noise-opacity', VCR_EFFECT.noiseOpacity);
+      bg.style.setProperty('--glitch-pixel-opacity', VCR_EFFECT.glitchPixelOpacity);
+      bg.style.setProperty('--distortion-line-opacity', VCR_EFFECT.distortionLineOpacity);
+
+      // Flicker
+      if (ENABLE_EFFECTS.enableFlicker) {
+        bg.classList.add('flicker');
+        bg.style.setProperty('--flicker-min', VCR_EFFECT.flickerMin);
+        bg.style.setProperty('--flicker-max', VCR_EFFECT.flickerMax);
+        bg.style.setProperty('--flicker-mid', VCR_EFFECT.flickerMid);
+        setRandomFlickerSpeed(bg);
+      } else {
+        bg.classList.remove('flicker');
+        bg.style.removeProperty('--flicker-min');
+        bg.style.removeProperty('--flicker-max');
+        bg.style.removeProperty('--flicker-mid');
+        bg.style.removeProperty('--flicker-speed');
+      }
+
+      // Scanlines
+      if (ENABLE_EFFECTS.enableScanlines) {
+        if (!bg.querySelector('.scanlines')) {
+          const scanlines = document.createElement('div');
+          scanlines.className = 'scanlines';
+          bg.appendChild(scanlines);
+        }
+        if (!bg.querySelector('.scanlines2')) {
+          const scanlines2 = document.createElement('div');
+          scanlines2.className = 'scanlines2';
+          bg.appendChild(scanlines2);
+        }
+      } else {
+        const scanlines = bg.querySelector('.scanlines');
+        if (scanlines) scanlines.remove();
+        const scanlines2 = bg.querySelector('.scanlines2');
+        if (scanlines2) scanlines2.remove();
+      }
+
+      // Noise
+      if (ENABLE_EFFECTS.enableNoise) {
+        if (!bg.querySelector('.noise')) {
+          const noiseCanvas = document.createElement('canvas');
+          noiseCanvas.className = 'noise';
+          noiseCanvas.width = window.innerWidth;
+          noiseCanvas.height = window.innerHeight;
+          bg.appendChild(noiseCanvas);
+
+          function updateNoise() {
+            if (!ENABLE_EFFECTS.enableNoise) return;
+            const ctx = noiseCanvas.getContext('2d');
+            const w = noiseCanvas.width;
+            const h = noiseCanvas.height;
+            const imgData = ctx.createImageData(w, h);
+            const buf = imgData.data;
+            for (let i = 0; i < buf.length; i += 4) {
+              const random = Math.random();
+              const shade = random < VCR_EFFECT.noiseDensity ? Math.floor(Math.random() * 255) : 0;
+              buf[i] = buf[i+1] = buf[i+2] = shade;
+              buf[i+3] = 255;
             }
-        }</script></body></html>
+            ctx.putImageData(imgData, 0, 0);
+            requestAnimationFrame(updateNoise);
+          }
+          updateNoise();
+
+          window.addEventListener('resize', () => {
+            noiseCanvas.width = window.innerWidth;
+            noiseCanvas.height = window.innerHeight;
+          });
+        }
+      } else {
+        const noiseCanvas = bg.querySelector('.noise');
+        if (noiseCanvas) noiseCanvas.remove();
+      }
+
+      // Glitch Pixels (sharper, bolder colors, random amount and interval)
+      if (ENABLE_EFFECTS.enableGlitchPixels) {
+        if (!bg.querySelector('.glitchpixels')) {
+          const glitchCanvas = document.createElement('canvas');
+          glitchCanvas.className = 'glitchpixels';
+          glitchCanvas.width = window.innerWidth;
+          glitchCanvas.height = window.innerHeight;
+          bg.appendChild(glitchCanvas);
+
+          function drawGlitchPixels() {
+            if (!ENABLE_EFFECTS.enableGlitchPixels) return;
+            const ctx = glitchCanvas.getContext('2d');
+            const w = glitchCanvas.width;
+            const h = glitchCanvas.height;
+            ctx.clearRect(0, 0, w, h);
+
+            // Random glitch pixel amount per frame
+            const pixelAmount = randomInt(VCR_EFFECT.glitchPixelMinAmount, VCR_EFFECT.glitchPixelMaxAmount);
+
+            for (let i = 0; i < pixelAmount; i++) {
+              const px = Math.random() * w;
+              const py = Math.random() * h;
+              const size = randomFloat(VCR_EFFECT.glitchPixelMinSize, VCR_EFFECT.glitchPixelMaxSize);
+              const color = VCR_EFFECT.glitchPixelColors[Math.floor(Math.random() * VCR_EFFECT.glitchPixelColors.length)];
+              ctx.fillStyle = color;
+              ctx.fillRect(px, py, size, size); // SQUARE, not bars
+            }
+            // Random interval each cycle
+            const nextInterval = randomInt(VCR_EFFECT.glitchPixelIntervalMin, VCR_EFFECT.glitchPixelIntervalMax);
+            setTimeout(drawGlitchPixels, nextInterval);
+          }
+          drawGlitchPixels();
+
+          window.addEventListener('resize', () => {
+            glitchCanvas.width = window.innerWidth;
+            glitchCanvas.height = window.innerHeight;
+          });
+        }
+      } else {
+        const glitchCanvas = bg.querySelector('.glitchpixels');
+        if (glitchCanvas) glitchCanvas.remove();
+      }
+
+      // Distortion Line
+      if (ENABLE_EFFECTS.enableDistortionLine) {
+        if (!bg.querySelector('.distortionline')) {
+          const distortionCanvas = document.createElement('canvas');
+          distortionCanvas.className = 'distortionline';
+          distortionCanvas.width = window.innerWidth;
+          distortionCanvas.height = window.innerHeight;
+          bg.appendChild(distortionCanvas);
+
+          let y = Math.random() * distortionCanvas.height;
+          let direction = 1;
+
+          function drawDistortionLine() {
+            if (!ENABLE_EFFECTS.enableDistortionLine) return;
+            const ctx = distortionCanvas.getContext('2d');
+            const w = distortionCanvas.width;
+            const h = distortionCanvas.height;
+            ctx.clearRect(0, 0, w, h);
+
+            const lineHeight = VCR_EFFECT.distortionLineHeight;
+            const lineLength = VCR_EFFECT.distortionLineLength;
+            const offset = (Math.random() - 0.5) * lineLength;
+
+            ctx.save();
+            ctx.globalAlpha = VCR_EFFECT.distortionLineOpacity;
+            ctx.fillStyle = VCR_EFFECT.distortionLineColor;
+            ctx.fillRect(offset, y, w - Math.abs(offset), lineHeight);
+
+            ctx.fillStyle = 'rgba(0,255,255,0.4)';
+            ctx.fillRect(offset, y, w/3, lineHeight/2);
+            ctx.fillStyle = 'rgba(255,0,0,0.3)';
+            ctx.fillRect(offset + w/2, y+lineHeight/2, w/3, lineHeight/2);
+
+            ctx.restore();
+
+            y += direction * VCR_EFFECT.distortionLineSpeed;
+            if (y > h - lineHeight) { y = h - lineHeight; direction = -1; }
+            if (y < 0) { y = 0; direction = 1; }
+
+            setTimeout(drawDistortionLine, VCR_EFFECT.distortionLineInterval);
+          }
+          drawDistortionLine();
+
+          window.addEventListener('resize', () => {
+            distortionCanvas.width = window.innerWidth;
+            distortionCanvas.height = window.innerHeight;
+          });
+        }
+      } else {
+        const distortionCanvas = bg.querySelector('.distortionline');
+        if (distortionCanvas) distortionCanvas.remove();
+      }
+    }
+
+    function setRandomFlickerSpeed(bgElem) {
+      function updateSpeed() {
+        if (!ENABLE_EFFECTS.enableFlicker) return;
+        const min = VCR_EFFECT.flickerSpeedMin;
+        const max = VCR_EFFECT.flickerSpeedMax;
+        const speed = randomFloat(min, max).toFixed(3);
+        bgElem.style.setProperty('--flicker-speed', speed + 's');
+        setTimeout(updateSpeed, Math.random() * 600 + 200);
+      }
+      updateSpeed();
+    }
+
+    window.onload = onPageLoaded;
+  </script>
+</head>
+<body>
+  <div id="siteTitle"><h1>stanhope.art</h1></div>
+  <div id="bgEffect">
+    <div id="bgImg"></div>
+  </div>
+</body>
+</html>
